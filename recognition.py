@@ -13,12 +13,11 @@ KEYWORDS = (
     "it's too loud here"
 )
 
-
 def recognize(audioSource):
     # Inicializa reconhecedor
     r = sr.Recognizer()
 
     # Identifica a frase a partir do audio
-    res = r.recognize_google(audio)
+    res = r.recognize_google(audioSource)
 
     return res in KEYWORDS
