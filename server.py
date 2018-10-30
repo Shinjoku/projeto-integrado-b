@@ -20,14 +20,23 @@ s.listen(1)
 # Aprovacao da conexao
 conn, addr = s.accept()
 print 'Connection address:', addr
+
+# A unica conexao fica aberta por tempo indefinido (ou ate o aparelho ser desligado)
 while 1:
+    
+    # Recebe o dado do arduino
     data = conn.recv(BUFFER_SIZE)
     if not data: break
     print "received data:", data
+
+    # Executa identificacao de conteudo
     ans = rc.rcognize(data)
-    if (ans):
-        conn.send(false)  # Envia sinal de resposta
+
+    # Responde se o aparelho deve ou nao desligar
+    if ans:
+        conn.send(False)
     else:
-        conn.send(true)
+        conn.send(True)
+
 # Fecha conexao
 conn.close()

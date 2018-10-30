@@ -3,11 +3,14 @@
 import speech_recognition as sr
 
 
+# Palavras que sao reconhecidas como gatilhos para que o som seja diminuido
 KEYWORDS = (
     'ola',
-    'hello',
     'alo',
-    'hi'
+    'o som ta muito alto',
+    'hi',
+    'hello',
+    "it's too loud here"
 )
 
 
@@ -18,7 +21,4 @@ def recognize(audioSource):
     # Identifica a frase a partir do audio
     res = r.recognize_google(audio)
 
-    if (res in KEYWORDS):
-        return true
-    else:
-        return false
+    return res in KEYWORDS
